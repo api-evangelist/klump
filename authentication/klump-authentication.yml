@@ -1,0 +1,57 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.useklump.com/docs/api-keys-authorization
+docs: https://docs.useklump.com/docs/api-keys-authorization
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  - body
+  oauth2_flows: []
+  notes: Klump has no OAuth surface. Server-to-server calls use a merchant secret key
+    in a custom header; the browser widget is initialised with a merchant public key.
+    Keys are issued per merchant application state (TEST or LIVE) from the merchant
+    dashboard under Settings > API Keys & Webhook.
+schemes:
+- name: klump-secret-key
+  type: apiKey
+  in: header
+  parameter_name: klump-secret-key
+  audience: server
+  description: Every API request to the Klump endpoints must include the merchant secret
+    key in a klump-secret-key request header. Requests with a missing, incorrect, or
+    outdated key are rejected with 401 Unauthorized. Klump advises keeping the secret
+    key server-side only.
+  example_usage: |
+    curl --location --request GET 'https://api.useklump.com/v1/transactions/:reference/verify' \
+      --header 'Content-Type: application/json' \
+      --header 'klump-secret-key: {{KLUMP_SEC_KEY}}'
+  source: https://docs.useklump.com/docs/api-keys-authorization
+- name: publicKey
+  type: apiKey
+  in: body
+  parameter_name: publicKey
+  audience: client
+  key_prefix: klp_pk_
+  description: Client-side integrations pass the merchant public key as a publicKey
+    parameter into the Klump object supplied by https://js.useklump.com/klump.js. This
+    key is safe to expose in the browser and does not authorise server API calls.
+  source: https://docs.useklump.com/docs/api-keys-authorization
+key_management:
+  environments:
+  - name: TEST
+    description: Test keys are used while the merchant application state is set to
+      TEST in the merchant dashboard. No real money moves.
+  - name: LIVE
+    description: Live keys are used once the merchant application state is switched
+      to LIVE and real transactions are accepted.
+  rotation: Regenerating a key immediately invalidates all previous keys; Klump will
+    not honour requests presenting a rotated key.
+  storage_guidance: Klump recommends environment variables or a key-management tool
+    (AWS Secrets Manager, HashiCorp Vault, Azure Key Vault).
+  issuance: Merchant dashboard > Settings > API Keys & Webhook
+related:
+  conventions: conventions/klump-conventions.yml
+  sandbox: sandbox/klump-sandbox.yml
+  errors: errors/klump-error-codes.yml
