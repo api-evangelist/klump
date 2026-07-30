@@ -1,20 +1,80 @@
 aid: klump
 name: Klump
-description: Klump is a company surfaced as a portfolio company of seedcamp and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: 'Klump Technology Company Ltd is a Lagos, Nigeria based fintech whose flagship
+  product, Klump BNPL (Buy Now, Pay Later), lets shoppers spread the cost of a purchase
+  over monthly instalments at online and in-store merchant checkouts. Merchants integrate
+  Klump either through the Klump.js client-side checkout widget, a framework component
+  (React, Vue 2, Vue 3, Angular, React Native, Flutter), an e-commerce plugin (WooCommerce/WordPress,
+  Magento 2, PrestaShop, OpenCart, WHMCS), a Laravel package, or directly against the
+  Klump REST API at https://api.useklump.com. The API is secret-key authenticated via
+  a klump-secret-key header, uses one base URL for both sandbox and production (the key
+  and the merchant application state, TEST or LIVE, select the environment), and covers
+  transaction verification, Klump Commerce product sync, Klump Access hosted payment
+  pages, and webhook resend. Klump emits transaction lifecycle webhooks (initiated,
+  successful, abandoned) signed with an X-Klump-Signature HMAC header and retried hourly
+  for 72 hours. Klump is backed by Seedcamp and displays a PCI DSS Compliant badge.'
 url: https://raw.githubusercontent.com/api-evangelist/klump/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://useklump.com/images/meta.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - seedcamp
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-public-docs
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Payments
+- Buy Now Pay Later
+- BNPL
+- Fintech
+- Lending
+- Checkout
+- E-Commerce
+- Nigeria
+- Africa
+- Instalments
+- Consumer Credit
+apis:
+- aid: klump:klump-api
+  name: Klump API
+  description: 'The Klump REST API lets a merchant verify transactions, sync commerce
+    product catalogs, create Klump Access hosted payment pages, and resend webhooks.
+    A single base URL serves both sandbox and production; the environment is selected
+    by whether the merchant application state is TEST or LIVE and by which secret key
+    is presented. Every request must carry the merchant secret key in a klump-secret-key
+    header; the public key (klp_pk_ prefix) is used client side with the Klump.js widget.'
+  humanURL: https://docs.useklump.com/docs
+  baseURL: https://api.useklump.com
+  tags:
+  - Payments
+  - BNPL
+  - Checkout
+  - Transactions
+  - Webhooks
+  properties:
+  - type: Documentation
+    url: https://docs.useklump.com/docs
+  - type: Authentication
+    url: https://docs.useklump.com/docs/api-keys-authorization
+  - type: Sandbox
+    url: https://docs.useklump.com/docs/test-card
+  - type: Webhooks
+    url: https://docs.useklump.com/docs/webhook-getting-started
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -22,4 +82,65 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: http://useklump.com
+  url: https://useklump.com
+- type: DeveloperPortal
+  url: https://useklump.com/developers
+- type: Documentation
+  url: https://docs.useklump.com/docs
+- type: APIReference
+  url: https://docs.useklump.com/docs/api-keys-authorization
+- type: GettingStarted
+  url: https://docs.useklump.com/docs/getting-started
+- type: Support
+  url: https://useklump.com/contact
+- type: Blog
+  url: https://useklump.com/blog
+- type: GitHubOrganization
+  url: https://github.com/Klump-Inc
+- type: Pricing
+  url: https://useklump.com/pricing
+- type: SignUp
+  url: https://merchant.useklump.com/sign-up
+- type: Login
+  url: https://merchant.useklump.com/sign-in
+- type: TermsOfService
+  url: https://useklump.com/legal/terms-of-service
+- type: PrivacyPolicy
+  url: https://useklump.com/legal/privacy-policy
+- type: Compliance
+  url: conformance/klump-conformance.yml
+- type: Authentication
+  url: authentication/klump-authentication.yml
+- type: Packages
+  url: packages/klump-packages.yml
+- type: SDKs
+  url: packages/klump-packages.yml
+- type: Components
+  url: components/klump-components.yml
+- type: Conventions
+  url: conventions/klump-conventions.yml
+- type: Idempotency
+  url: conventions/klump-conventions.yml
+- type: ErrorCatalog
+  url: errors/klump-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/klump-lifecycle.yml
+- type: Sandbox
+  url: sandbox/klump-sandbox.yml
+- type: Webhooks
+  url: asyncapi/klump-webhooks.yml
+- type: Conformance
+  url: conformance/klump-conformance.yml
+- type: WellKnown
+  url: well-known/klump-well-known.yml
+- type: DomainSecurity
+  url: security/klump-domain-security.yml
+- type: MCPServer
+  url: mcp/klump-mcp.yml
+- type: LLMsTxt
+  url: llms/klump-llms.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
