@@ -1,0 +1,38 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.useklump.com/docs
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.useklump.com/docs/api-keys-authorization
+  note: All documented endpoints sit under /v1/. Klump publishes no version policy
+    document, no version negotiation header, and no record of prior versions.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: null
+  deprecation_header: null
+  note: No deprecation or sunset policy is published, and no RFC 8594 Sunset or
+    Deprecation header support is documented.
+sla:
+  url: null
+  uptime_target: null
+  published: false
+status_page:
+  url: null
+  published: false
+  note: No status page was found. status.useklump.com does not resolve, and no
+    status link is published on useklump.com or docs.useklump.com.
+changelog:
+  url: null
+  published: false
+  note: Klump publishes no dated API changelog. Individual documentation pages carry
+    a "Published" date (the current set spans 21/05/2025 to 27/02/2026), which is the
+    only versioning signal on the docs surface.
+deprecated_operations: []
+support:
+  contact: https://useklump.com/contact
+  developer_community: Klump Developer Workspace on Slack, linked from
+    https://useklump.com/developers and https://docs.useklump.com
+notes: Recorded as valid negative evidence. No StatusPage or Deprecation pointer is
+  wired into apis.yml because neither surface exists.

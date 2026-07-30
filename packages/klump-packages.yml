@@ -1,0 +1,102 @@
+generated: '2026-07-19'
+method: searched
+source: npm registry search, Packagist, pub.dev, and the Klump-Inc GitHub organization
+docs: https://docs.useklump.com/docs/plugins
+packages:
+- language: javascript
+  framework: react
+  registry: npm
+  name: klump-react
+  version: 1.0.5
+  url: https://www.npmjs.com/package/klump-react
+  repository: https://github.com/Klump-Inc/klump-react
+  install: npm install klump-react
+  official: true
+  description: Klump component for React that helps you integrate Klump easily.
+- language: javascript
+  framework: vue
+  registry: npm
+  name: klump-vue
+  version: 1.0.3
+  url: https://www.npmjs.com/package/klump-vue
+  repository: https://github.com/Klump-Inc/klump-vue
+  install: npm install klump-vue
+  official: true
+  description: Vue 2 package for integrating the Klump checkout.
+- language: javascript
+  framework: vue3
+  registry: npm
+  name: klump-vue-3
+  version: 1.0.1
+  url: https://www.npmjs.com/package/klump-vue-3
+  repository: https://github.com/Klump-Inc/klump-vue-3
+  install: npm install klump-vue-3
+  official: true
+  description: Vue 3 package for integrating the Klump checkout.
+- language: javascript
+  framework: angular
+  registry: npm
+  name: klump-angular
+  version: 0.0.2
+  url: https://www.npmjs.com/package/klump-angular
+  repository: https://github.com/Klump-Inc/klump-angular
+  install: npm install klump-angular
+  official: true
+  description: Klump checkout component for AngularJS.
+- language: javascript
+  framework: react-native
+  registry: npm
+  name: klump-react-native
+  version: 0.1.0
+  url: https://www.npmjs.com/package/klump-react-native
+  install: npm install klump-react-native
+  official: true
+  description: Klump checkout view for React Native.
+- language: javascript
+  framework: vue
+  registry: npm
+  name: klump-checkout-vue
+  version: 1.0.0
+  url: https://www.npmjs.com/package/klump-checkout-vue
+  install: npm install klump-checkout-vue
+  official: true
+  description: Klump checkout component for Vue.
+- language: php
+  framework: laravel
+  registry: packagist
+  name: klump/laravel-klump
+  url: https://packagist.org/packages/klump/laravel-klump
+  repository: https://github.com/Klump-Inc/laravel-klump
+  install: composer require klump/laravel-klump
+  official: true
+  description: Laravel package wrapping the Klump checkout and webhook handling.
+- language: dart
+  framework: flutter
+  registry: pub.dev
+  name: klump_checkout
+  url: https://pub.dev/packages/klump_checkout
+  repository: https://github.com/Klump-Inc/flutter_plugin
+  install: flutter pub add klump_checkout
+  official: true
+  description: Klump checkout plugin for Flutter.
+plugins:
+- platform: WooCommerce / WordPress
+  repository: https://github.com/Klump-Inc/wordpress-plugin
+  official: true
+  description: Klump WooCommerce payment gateway plus product sync.
+- platform: Magento 2
+  repository: https://github.com/Klump-Inc/klump-magento2-module
+  official: true
+- platform: PrestaShop
+  repository: https://github.com/Klump-Inc/prestashop-plugin
+  official: true
+- platform: OpenCart 4
+  repository: https://github.com/Klump-Inc/opencart-plugin
+  official: true
+- platform: WHMCS
+  official: false
+  description: Listed by Klump under "Community Contribution" on the plugins page.
+notes: Klump publishes no server-side SDK for the REST API itself; every first-party
+  library is a client-side checkout component or an e-commerce platform plugin. No
+  Klump packages were found on PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems, or
+  crates.io.

@@ -1,0 +1,68 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.useklump.com/docs/test-card
+docs:
+- https://docs.useklump.com/docs/test-card
+- https://docs.useklump.com/docs/product-testing
+- https://docs.useklump.com/docs/environment
+model:
+  separation: keys-and-application-state
+  base_url_shared: true
+  base_url: https://api.useklump.com
+  description: Klump uses a single base API endpoint for both sandbox/development and
+    production. The environment is selected by the merchant application state (TEST
+    or LIVE) set in the merchant dashboard, and by which key pair is presented. No
+    real money moves for transactions made while the application state is TEST.
+  key_prefixes:
+  - prefix: klp_pk_
+    kind: public
+    audience: client
+    note: Public key passed into the Klump.js object in the browser.
+  switching: Change the application state to TEST in the merchant dashboard during
+    development, then to LIVE before accepting real transactions.
+test_bank_accounts:
+- bank: Stanbic Bank
+  account_number: '1234567890'
+  phone_number: '08012345678'
+  otp: '123456'
+- bank: Polaris Bank
+  account_number: '1234567890'
+  phone_number: '08012345678'
+  otp: '1234'
+  first_name: John
+- bank: Sterling Bank
+  account_number: Generate any random 10 numbers, e.g. 0239566990
+  phone_number: '08012345678'
+  email: any address
+  specta_id: SPTest
+  specta_password: '111111'
+checkout_test_values:
+  otp: '12345'
+  otp_note: At the one-time-password screen in the test environment, enter 12345. A
+    real OTP is sent to the mobile number once the account is switched to LIVE.
+  phone_number_format: Any random number following the Nigerian format, e.g. 0803XXXXXXX
+  bio_data:
+    first_name: Samuel
+    last_name: Olamide
+  id_verification:
+    document_type: Driver's license
+    number: ABC12345DE67
+  bank_linking: On the bank-link screen select Stanbic, Polaris or another listed test
+    bank and use the "fill with test data" button together with the test credentials
+    above.
+  email_guidance: Klump asks integrators to use a disposable address (it names
+    https://temp-mail.org/en/) rather than a non-functional real address, because
+    bounces penalise their email provider.
+  password_guidance: Use at least one upper case, one lower case, one special character
+    and one number, e.g. Password@1.
+fixtures_and_tooling:
+  test_clock: false
+  trigger_tooling: false
+  webhook_replay: true
+  webhook_replay_note: A webhook can be resent for any past transaction using its
+    Klump-generated transaction reference; Klump returns the most recent state of
+    that event. See asyncapi/klump-webhooks.yml.
+  local_tunnelling: Tunnelling services such as ngrok are supported for webhook
+    delivery to localhost during development.
+notes: Every value above is published verbatim in the Klump documentation as test-only
+  data; none of it is a real credential and none of it was invented by this pipeline.

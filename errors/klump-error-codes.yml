@@ -1,0 +1,65 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.useklump.com/docs/errors
+docs: https://docs.useklump.com/docs/errors
+format: http-status
+rfc9457: false
+envelope:
+  description: Klump uses standard HTTP response codes across all transactions, with
+    codes ranging from the 200s to the 500s. Error responses include an error code
+    and a message describing what went wrong. Klump publishes no application/problem+json
+    media type and no machine-readable error-type registry.
+  fields:
+  - code
+  - message
+errors:
+- status: 200
+  name: OK
+  meaning: Success. The request was processed.
+  class: success
+- status: 201
+  name: Created
+  meaning: Success, and a resource was created on the Klump side.
+  class: success
+- status: 400
+  name: Bad Request
+  meaning: The request could not be accepted because a required parameter was omitted.
+  remediation: Reconfirm the required parameters for the operation and retry.
+  class: client
+- status: 401
+  name: Unauthorized
+  meaning: No valid API key was provided.
+  remediation: Send the merchant secret key in the klump-secret-key header. Confirm
+    the key matches the current application state (TEST or LIVE) and has not been
+    rotated.
+  class: client
+- status: 403
+  name: Forbidden
+  meaning: The caller does not have clearance to perform this action.
+  remediation: Confirm the merchant account is permitted to use the endpoint.
+  class: client
+- status: 409
+  name: Conflict
+  meaning: The request conflicted with another one; there is a high likelihood Klump
+    has already processed this request.
+  remediation: Treat as a duplicate. Verify the transaction state before retrying so
+    the same operation is not applied twice.
+  class: client
+  idempotency_signal: true
+- status: 429
+  name: Too Many Requests
+  meaning: The API is being called too quickly.
+  remediation: Back off and retry. Klump publishes no numeric rate-limit values and
+    no RateLimit response headers.
+  class: client
+- status: 5xx
+  name: Server Error
+  meaning: An error on the Klump side.
+  remediation: Retry with backoff; contact Klump support if it persists.
+  class: server
+notes: Klump is a BNPL lender rather than a card acquirer and publishes no decline-code
+  reference, so no errors/klump-decline-codes.yml artifact exists. The HTTP status
+  table above is the complete published error surface.
+related:
+  conventions: conventions/klump-conventions.yml
+  authentication: authentication/klump-authentication.yml

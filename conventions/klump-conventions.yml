@@ -1,0 +1,90 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.useklump.com/docs
+docs:
+- https://docs.useklump.com/docs/api-keys-authorization
+- https://docs.useklump.com/docs/environment
+- https://docs.useklump.com/docs/errors
+- https://docs.useklump.com/docs/webhook-getting-started
+base_url: https://api.useklump.com
+authentication:
+  style: api-key-header
+  header: klump-secret-key
+  client_side: publicKey parameter (klp_pk_ prefix) passed into the Klump.js object
+  oauth: false
+  detail: authentication/klump-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  example: https://api.useklump.com/v1/transactions/{reference}/verify
+  header_versioning: false
+  date_versioning: false
+  detail: lifecycle/klump-lifecycle.yml
+environments:
+  strategy: single base URL, environment selected by key and merchant application state
+  states:
+  - TEST
+  - LIVE
+  detail: sandbox/klump-sandbox.yml
+content_type:
+  request: application/json
+  response: application/json
+idempotency:
+  supported: true
+  scope: webhook-delivery
+  request_header: null
+  webhook_key_header: X-Klump-Webhook-Id
+  attempt_header: X-Klump-Webhook-Attempt
+  description: Klump's documented idempotency contract is on the inbound event side.
+    Webhook deliveries are at-least-once (retried hourly for 72 hours until a 2xx is
+    returned), each delivery carries an X-Klump-Webhook-Id that is stable across
+    retries, and Klump explicitly instructs merchants to deduplicate on that ID and
+    never process the same webhook twice. On the request side, a duplicate call is
+    signalled by HTTP 409 Conflict, documented as "there is a high likelihood that we
+    have already treated this request". Klump does not publish a client-supplied
+    Idempotency-Key request header.
+  retention: not published
+  evidence:
+  - https://docs.useklump.com/docs/webhook-getting-started
+  - https://docs.useklump.com/docs/errors
+  detail: asyncapi/klump-webhooks.yml
+pagination:
+  supported: null
+  note: Klump publishes no list endpoints and no pagination convention in its public
+    documentation.
+field_expansion:
+  supported: false
+metadata:
+  supported: true
+  field: merchant_reference
+  description: A merchant_reference can optionally be supplied on a Klump Access
+    payment page. The value is stored on transactions and returned in webhooks and
+    API responses, and Klump recommends a unique reference per page so payments can
+    be matched to the correct order.
+  source: https://docs.useklump.com/docs/payment-pages
+request_tracing:
+  request_id_header: null
+  note: No request-id or correlation header is documented for API responses. The only
+    documented correlation identifiers are the Klump transaction reference and the
+    webhook X-Klump-Webhook-Id.
+errors:
+  format: http-status
+  problem_json: false
+  envelope_fields:
+  - code
+  - message
+  detail: errors/klump-error-codes.yml
+rate_limiting:
+  signalled: true
+  status: 429
+  headers_published: false
+  numeric_limits_published: false
+  note: A 429 Too Many Requests response is documented, but Klump publishes no
+    numeric quota and no RateLimit response headers.
+verification_before_fulfilment:
+  required: true
+  description: After a successful transaction a merchant must verify it before
+    providing value. Check that data.currency matches what is expected, and that
+    data.is_live is true before issuing real value.
+  operation: GET https://api.useklump.com/v1/transactions/{reference}/verify
+  source: https://docs.useklump.com/docs/transaction-verification

@@ -1,0 +1,65 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.useklump.com/docs/plugins
+docs:
+- https://docs.useklump.com/docs/plugins
+- https://docs.useklump.com/docs/payment-pages
+loaders:
+- name: Klump.js
+  url: https://js.useklump.com/klump.js
+  status: 200
+  type: script
+  description: The hosted client-side checkout library. It exposes a Klump object
+    that is instantiated with a publicKey (klp_pk_ prefix) plus the order payload; it
+    renders the Klump BNPL checkout experience in the browser.
+  init_parameter: publicKey
+  source: https://docs.useklump.com/docs/api-keys-authorization
+families:
+- name: Framework checkout components
+  description: Thin first-party wrappers around Klump.js for the major front-end
+    frameworks. Catalogued as packages in packages/klump-packages.yml.
+  components:
+  - name: klump-react
+    platform: React
+    repository: https://github.com/Klump-Inc/klump-react
+  - name: klump-vue
+    platform: Vue 2
+    repository: https://github.com/Klump-Inc/klump-vue
+  - name: klump-vue-3
+    platform: Vue 3
+    repository: https://github.com/Klump-Inc/klump-vue-3
+  - name: klump-angular
+    platform: AngularJS
+    repository: https://github.com/Klump-Inc/klump-angular
+  - name: klump-react-native
+    platform: React Native
+  - name: klump_checkout
+    platform: Flutter
+    repository: https://github.com/Klump-Inc/flutter_plugin
+- name: Hosted payment surfaces
+  description: Prebuilt, Klump-hosted pages a merchant can link to instead of
+    embedding a component.
+  components:
+  - name: Klump Access payment page
+    kind: hosted-page
+    description: A shareable payment page created either from the merchant dashboard
+      or via the API. Supports a fixed amount (minimum NGN 25,000 when
+      is_fixed_amount is true) or a free-flowing amount the shopper chooses, plus an
+      optional merchant_reference stored on the resulting transaction and echoed in
+      webhooks and API responses. Pages can be deactivated from the payment page
+      details screen.
+    docs: https://docs.useklump.com/docs/payment-pages
+- name: E-commerce platform gateways
+  description: Drop-in checkout integrations for hosted storefronts. Catalogued in
+    packages/klump-packages.yml.
+  components:
+  - name: WooCommerce / WordPress
+    repository: https://github.com/Klump-Inc/wordpress-plugin
+  - name: Magento 2
+    repository: https://github.com/Klump-Inc/klump-magento2-module
+  - name: PrestaShop
+    repository: https://github.com/Klump-Inc/prestashop-plugin
+  - name: OpenCart 4
+    repository: https://github.com/Klump-Inc/opencart-plugin
+notes: Klump also publishes a demo storefront at https://demo-store.useklump.com and
+  a merchant storefront surface at https://store.useklump.com.
