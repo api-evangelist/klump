@@ -1,14 +1,12 @@
 generated: '2026-07-19'
 method: derived
 status: candidate
-source: https://docs.useklump.com/docs plus first-party plugin source in
-  https://github.com/Klump-Inc
+source: https://docs.useklump.com/docs plus first-party plugin source in https://github.com/Klump-Inc
 official_server: none
-notes: Klump publishes no hosted or remote MCP server, and no Klump entry exists in
-  the official MCP registry or under the @modelcontextprotocol npm scope. Klump also
-  publishes no OpenAPI definition, so the candidate tool list below is derived from
-  endpoints that are documented verbatim or that appear in Klump's own open-source
-  e-commerce plugins. This is a design proposal, not a provider claim.
+notes: Klump publishes no hosted or remote MCP server, and no Klump entry exists in the official MCP registry
+  or under the @modelcontextprotocol npm scope. Klump also publishes no OpenAPI definition, so the candidate
+  tool list below is derived from endpoints that are documented verbatim or that appear in Klump's own
+  open-source e-commerce plugins. This is a design proposal, not a provider claim.
 server:
   name: klump
   transport: http
@@ -16,13 +14,12 @@ server:
   auth:
     type: apiKey
     header: klump-secret-key
-    note: A server would carry the merchant secret key; the client-side publicKey has
-      no server API authority.
+    note: A server would carry the merchant secret key; the client-side publicKey has no server API authority.
 tools:
 - name: verify_transaction
-  description: Verify that a Klump transaction succeeded before releasing value to a
-    customer. Callers should confirm data.currency matches the expected currency and
-    that data.is_live is true before issuing real value.
+  description: Verify that a Klump transaction succeeded before releasing value to a customer. Callers
+    should confirm data.currency matches the expected currency and that data.is_live is true before issuing
+    real value.
   operation: GET https://api.useklump.com/v1/transactions/{reference}/verify
   parameters:
   - name: reference
@@ -33,16 +30,12 @@ tools:
   confidence: documented
   consequence: read
 - name: sync_commerce_products
-  description: Push a merchant product catalog into Klump Commerce so items can be
-    listed and financed.
+  description: Push a merchant product catalog into Klump Commerce so items can be listed and financed.
   operation: POST https://api.useklump.com/v1/commerce/products/sync
   evidence:
-  - https://github.com/Klump-Inc/wordpress-plugin (includes/class-product-sync.php,
-    EXTERNAL_SERVER_URL)
-  - https://github.com/Klump-Inc/klump-magento2-module (Helpers/SyncHelper.php,
-    SYNC_URL)
-  - https://github.com/Klump-Inc/prestashop-plugin
-    (modules/klump/services/KlumpProductSync.php)
+  - https://github.com/Klump-Inc/wordpress-plugin (includes/class-product-sync.php, EXTERNAL_SERVER_URL)
+  - https://github.com/Klump-Inc/klump-magento2-module (Helpers/SyncHelper.php, SYNC_URL)
+  - https://github.com/Klump-Inc/prestashop-plugin (modules/klump/services/KlumpProductSync.php)
   confidence: source-verified
   consequence: write
 undocumented_paths:
@@ -50,13 +43,18 @@ undocumented_paths:
   documented: true
   path_published: false
   docs: https://docs.useklump.com/docs/payment-pages
-  note: The docs describe creating payment pages via API (including is_fixed_amount,
-    amount with an NGN 25,000 minimum, and merchant_reference) but the code sample
-    carrying the request path is rendered client side and the path is not published
-    in the HTML. Not modelled as a tool rather than guessed.
+  note: The docs describe creating payment pages via API (including is_fixed_amount, amount with an NGN
+    25,000 minimum, and merchant_reference) but the code sample carrying the request path is rendered
+    client side and the path is not published in the HTML. Not modelled as a tool rather than guessed.
 - capability: Resend a webhook for a past transaction
   documented: true
   path_published: false
   docs: https://docs.useklump.com/docs/resend-webhook
-  note: Documented as taking the Klump transaction reference as a required field, but
-    the endpoint path is not published. Not modelled as a tool rather than guessed.
+  note: Documented as taking the Klump transaction reference as a required field, but the endpoint path
+    is not published. Not modelled as a tool rather than guessed.
+deployment:
+  mode: none
+  verified: derived
+  tools: 2
+  checked: '2026-08-12'
+  source: catalog MCP census
