@@ -64,6 +64,12 @@ apis:
   - Payments
   - BNPL
   - Checkout
+  - Transaction
+  - Webhook
+  tags_raw:
+  - Payments
+  - BNPL
+  - Checkout
   - Transactions
   - Webhooks
   properties:
