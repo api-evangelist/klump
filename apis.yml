@@ -14,6 +14,17 @@ description: 'Klump Technology Company Ltd is a Lagos, Nigeria based fintech who
   successful, abandoned) signed with an X-Klump-Signature HMAC header and retried hourly
   for 72 hours. Klump is backed by Seedcamp and displays a PCI DSS Compliant badge.'
 url: https://raw.githubusercontent.com/api-evangelist/klump/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
