@@ -53,6 +53,18 @@ tags:
 - Company
 - Payments
 - Buy Now Pay Later
+- Fintech
+- Lending
+- Checkout
+- E-Commerce
+- Nigeria
+- Africa
+- Instalments
+- Consumer Credit
+tags_raw:
+- Company
+- Payments
+- Buy Now Pay Later
 - BNPL
 - Fintech
 - Lending
@@ -75,7 +87,7 @@ apis:
   baseURL: https://api.useklump.com
   tags:
   - Payments
-  - BNPL
+  - Buy Now Pay Later
   - Checkout
   - Transaction
   - Webhook
