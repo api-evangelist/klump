@@ -6,9 +6,16 @@ source:
 - https://composio.dev/toolkits/klump
 - https://monid.ai/tools/klump
 checked:
+- https://api.nuget.org/v3
 - https://composio.dev/toolkits/klump
+- https://crates.io/api/v1
 - https://monid.ai/tools/klump
 - https://n8n.io/integrations/klump/
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://zapier.com/apps/klump/integrations
 - wordpress/integrations/wordpress-integration-edges.yml
 summary: null
@@ -31,4 +38,79 @@ edges:
   detected: '2026-10-15'
   detected_by: mirror-platform-listings.py
   category: WordPress plugin
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/klump-angular
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: klump-angular
+      version: 0.0.2
+      released: '2024-10-15'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/klump-angular
+      repo_leg: github-org:klump-inc
+      publisher_leg: email:useklump.com
+      matched_by: domain
+    - name: klump-checkout-vue
+      version: 1.0.0
+      released: '2022-04-20'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/klump-checkout-vue
+      repo_leg: github-org:klump-inc
+      publisher_leg: email:useklump.com
+      matched_by: domain
+    - name: klump-react
+      version: 1.0.5
+      released: '2025-11-24'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/klump-react
+      repo_leg: github-org:klump-inc
+      publisher_leg: email:useklump.com
+      matched_by: domain
+    - name: klump-react-native
+      version: 0.1.0
+      released: '2022-08-08'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/klump-react-native
+      repo_leg: github-org:klump-inc
+      publisher_leg: email:useklump.com
+      matched_by: domain
+    - name: klump-vue
+      version: 1.0.3
+      released: '2023-03-23'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/klump-vue
+      repo_leg: github-org:klump-inc
+      publisher_leg: email:useklump.com
+      matched_by: domain
+    - name: klump-vue-3
+      version: 1.0.1
+      released: '2025-08-25'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/klump-vue-3
+      repo_leg: github-org:klump-inc
+      publisher_leg: email:useklump.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 templates: []
